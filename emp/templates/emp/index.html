@@ -1,0 +1,47 @@
+
+
+
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+ {% if latest_emp_list %}
+   <table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+    {% for emp in latest_emp_list %}
+    <tr>
+    <td>{{ emp.id }}</td>
+    <td>{{ emp.emp_name }}</td>
+    <td>{{ emp.emp_email }}</td>
+  </tr>       
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No data are available.</p>
+{% endif %} 
+
+
+<a href="/emp/upload_file/"> Add </a>
+
+
+</body>  

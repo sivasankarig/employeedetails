@@ -1,0 +1,15 @@
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<div align='center'>
+<form action="/emp/upload_file/" method="post" enctype="multipart/form-data">{% csrf_token %}
+<h1>Add Employee's </h1>
+<label for="file">Filename:</label>
+{{form.file}}
+
+<br/>
+
+<input type="submit" name="submit" value="Submit" />
+</form>
+
+</div>
