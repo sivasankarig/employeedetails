@@ -24,7 +24,7 @@ def index(request):
     return render(request, 'emp/index.html', context)
 
 def insertemp(line):
-    name,email=line.split(',')
+    name,email=line.split(',',2)
     try:
         ec=Employee.objects.filter(emp_name=name).count()
         if ec==0:
@@ -43,7 +43,7 @@ def overwrite(request):
      emplist = request.POST.getlist('overwrite')
      lsize=len(emplist) 
      for line in emplist:
-        name,email=line.split(',')
+        name,email=line.split(',',2)
         ec=Employee.objects.filter(emp_name=name).update(emp_email=email)
      return HttpResponse(" %s entries has been successfully overwritten" % lsize)
 
