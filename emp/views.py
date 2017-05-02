@@ -19,14 +19,14 @@ import io
 # Create your views here.
 
 def index(request):
-    latest_emp_list = Employee.objects.order_by('-pub_date')[:5]
+    latest_emp_list = Employee.objects.order_by('id')[:20]
     context = {'latest_emp_list': latest_emp_list}
     return render(request, 'emp/index.html', context)
 
 def insertemp(line):
     name,email=line.split(',')
     try:
-        ec=Employee.objects.filter(emp_email=email).count()
+        ec=Employee.objects.filter(emp_name=name).count()
         if ec==0:
             emp=Employee(emp_name=name,emp_email=email,pub_date=timezone.now())
             emp.save()
@@ -44,8 +44,7 @@ def overwrite(request):
      lsize=len(emplist) 
      for line in emplist:
         name,email=line.split(',')
-        emp=Employee(emp_name=name,emp_email=email,pub_date=timezone.now())
-        emp.save() 
+        ec=Employee.objects.filter(emp_name=name).update(emp_email=email)
      return HttpResponse(" %s entries has been successfully overwritten" % lsize)
 
 
